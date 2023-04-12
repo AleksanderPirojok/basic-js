@@ -25,3 +25,5 @@ function dateSample(/* sampleActivity */) {
 module.exports = {
   dateSample
 };
+
+// t = (ln(N0 / N)) / k
