@@ -15,9 +15,48 @@ const { NotImplementedError } = require('../extensions/index.js');
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-function repeater(/* str, options */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+/*
+    repeatTimes sets the number of repetitions of the str;
+    separator is a string separating repetitions of the str;
+    addition is an additional string that will be added to each repetition of the str;
+    additionRepeatTimes sets the number of repetitions of the addition;
+    additionSeparator is a string separating repetitions of the addition.
+*/
+
+function repeater(str, options) {
+    let result = '';
+
+    let obj = {};
+    obj.repeatTimes = options.repeatTimes ? options.repeatTimes : 0;
+    obj.separator = options.separator ? options.separator : '+';
+    obj.addition = (typeof options.addition === 'undefined') ? '' : String(options.addition);
+    obj.additionRepeatTimes = options.additionRepeatTimes ? options.additionRepeatTimes : 0;
+    obj.additionSeparator = options.additionSeparator ? options.additionSeparator : '|';
+
+    let string = String(str);
+
+    if (obj.additionRepeatTimes > 0) {
+        let subArr = [];
+        for (let i = 0; i < obj.additionRepeatTimes; i++) {
+            subArr.push(obj.addition);
+        }
+        string += subArr.join(obj.additionSeparator);
+    } else {
+        string += obj.addition;
+    }
+
+    if (obj.repeatTimes > 0) {
+        let subArr = [];
+        for (let i = 0; i < obj.repeatTimes; i++) {
+            subArr.push(string);
+        }
+        result += subArr.join(obj.separator);
+    } else {
+        result = string;
+    }
+
+    return result;
 }
 
 module.exports = {
