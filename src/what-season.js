@@ -53,6 +53,10 @@ function getSeason(date) {
 */
 }
 
+/*
+console.log(Object.getOwnPropertyNames(date).length)
+*/
+
 module.exports = {
   getSeason
 };
